@@ -1,0 +1,6 @@
+[user]
+	name = Christopher Holmes
+	email = christopher@mrholm.es
+
+[alias]
+    l = "!. ~/.githelpers && pretty_git_log"
