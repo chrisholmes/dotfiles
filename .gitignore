@@ -52,6 +52,7 @@ tags
 .bundler/**/*
 .bundle/**/*
 .macports/**/*
+.ssh/**/*
 
 Applications/**/*
 Documents/**/*
