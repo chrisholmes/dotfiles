@@ -20,6 +20,8 @@ alias chruby-reload="source /usr/local/opt/chruby/share/chruby/chruby.sh"
 
 alias ideas="vim ~/.ideas.md"
 
+export EDITOR=vim
+
 setopt promptsubst
 autoload -Uz promptinit
 promptinit
