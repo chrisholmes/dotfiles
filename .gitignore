@@ -43,29 +43,53 @@ tmp/*
 **/tags
 
 .netrwhist
-
 .VimballRecord
+.Xauthority
+.htoprc
+.exrc
+.bashrc
+.lesshst
+.rnd
+.viminf*
+.NERDTreeBookmarks
 
 tags
 
-.netrwhist
-.bundler/**/*
-.bundle/**/*
-.macports/**/*
-.ssh/**/*
+/.bundler
+/.bundle
+/.macports
+/.ssh
+/.irb-history
+/.cache
+/.dropbox
+/.rubies
+/.pow
+/.gem
+/.config
+/.cabal
+/.vim-cache
+/.vagrant.d
+/.fontconfig
+/.npm
+/.pia_manager
+/.mplayer
+/.subversion
 
-Applications/**/*
-Documents/**/*
-Movies/**/*
-Downloads/**/*
-Dropbox/**/*
-Pictures/**/*
-VirtualBox VMs/**/*
-WindowsSupport/**/*
-Comics/**/*
-Desktop/**/*
-Library/**/*
-Music/**/*
-Public/**/*
-macports/**/*
-.Trash/**/*
+/Applications
+/Documents
+/Movies
+/Downloads
+/Dropbox
+/Pictures
+/VirtualBox VMs
+/WindowsSupport
+/Comics
+/Desktop
+/Library
+/Music
+/Public
+/docker
+/learning
+/project
+/macports
+/.Trash
