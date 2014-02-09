@@ -17,8 +17,6 @@ alias ls="ls -G"
 export HISTSIZE=2000
 export TERM=screen-256color
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
 alias chruby-reload="source /usr/local/opt/chruby/share/chruby/chruby.sh" 
 
 alias ideas="vim ~/.ideas.md"
