@@ -6,8 +6,11 @@ compinit
 setopt correctall
 
 # prompt
-autoload -U promptinit
+setopt promptsubst
+autoload -Uz promptinit
 promptinit
+prompt grb
+
 alias ll="ls -lG"
 alias ls="ls -G"
 
@@ -21,8 +24,3 @@ alias chruby-reload="source /usr/local/opt/chruby/share/chruby/chruby.sh"
 alias ideas="vim ~/.ideas.md"
 
 export EDITOR=vim
-
-setopt promptsubst
-autoload -Uz promptinit
-promptinit
-prompt grb
