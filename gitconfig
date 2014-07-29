@@ -1,0 +1,13 @@
+[user]
+	name = Christopher Holmes
+	email = christopher.holmes@digital.cabinet-office.gov.uk
+
+[alias]
+    l  = "!. ~/.githelpers && pretty_git_log"
+    co = "checkout"
+    ci = "commit"
+    s  = "status"
+[core]
+	excludesfile = ~/.gitignore_global
+[push]
+	default = simple
