@@ -73,6 +73,11 @@ function prompt_grb_scm_info() {
     fi
 }
 
+function prompt_vi_mode() {
+  VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+  echo "${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}$pc[reset]"
+}
+
 prompt_grb_setup() {
 	local verbose
 	if [[ $TERM == screen* ]] && [ -n "$STY" ]; then
@@ -162,7 +167,8 @@ prompt_grb_setup() {
 #"
 	#PROMPT+="($pc[hist]%h$pc[reset])"
 	PROMPT+=":$pc[shortpath]%1~$pc[reset]"
-    PROMPT+="\$(prompt_grb_scm_info)"
+  PROMPT+="\$(prompt_grb_scm_info)"
+  PROMPT+="\$(prompt_vi_mode)"
 	PROMPT+=" $pc[#]\$$pc[reset] "
 
     #RPROMPT=

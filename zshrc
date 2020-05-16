@@ -22,18 +22,35 @@ export TERM=screen-256color
 alias ideas="vim ~/.ideas.md"
 
 export EDITOR=vim
-bindkey -e
-
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_55.jdk/Contents/Home/"
+# bindkey -e
 
 alias gs='git status'
 alias gci='git commit'
 alias grb='git rebase'
 alias gco='git checkout'
 alias gl='git l'
+alias m='git checkout master'
 
+alias vim='nvim'
 alias vi='vim'
-cdpath=(~ ~/ida)
 
 export DISPLAY=:0
-eval "$(rbenv init -)"
+
+. /usr/local/opt/asdf/asdf.sh
+. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+
+export PATH="/usr/local/sbin:$PATH"
+export HOMEBREW_NO_AUTO_UPDATE=1
+export PROJECTS_HOME=${HOME}/projects
+export PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
+export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
+export PROJECTS_HOME=${HOME}/projects
+
+bindkey -v
+export KEYTIMEOUT=1
+
+alias bex='bundle exec'
+
+# Wasmer
+export WASMER_DIR="/Users/christopher.holmes/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
