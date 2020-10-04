@@ -6,4 +6,10 @@ sudo apt-get install -y rcm
 cp -r ~/dotfiles ~/.dotfiles
 (cd ~/ && rcup -v)
 
-sudo apt-get install -y tmux
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+echo "eval \$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >>~/.profile
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+brew install tmux
+brew install nvim
