@@ -36,21 +36,23 @@ alias vi='vim'
 
 export DISPLAY=:0
 
-. /usr/local/opt/asdf/asdf.sh
-. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
-
-export PATH="/usr/local/sbin:$PATH"
-export HOMEBREW_NO_AUTO_UPDATE=1
-export PROJECTS_HOME=${HOME}/projects
-export PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
-export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
-export PROJECTS_HOME=${HOME}/projects
-
 bindkey -v
 export KEYTIMEOUT=1
 
-alias bex='bundle exec'
+if [[ “$OSTYPE” == “darwin”* ]]; then
+  . /usr/local/opt/asdf/asdf.sh
+  . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
-# Wasmer
-export WASMER_DIR="/Users/christopher.holmes/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+  export PATH=“/usr/local/sbin:$PATH”
+  export HOMEBREW_NO_AUTO_UPDATE=1
+  export PROJECTS_HOME=${HOME}/projects
+  export PATH=“/usr/local/opt/coreutils/libexec/gnubin/:$PATH”
+  export PATH=“$(brew —prefix qt@5.5)/bin:$PATH”
+  export PROJECTS_HOME=${HOME}/projects
+
+  # Wasmer
+  export WASMER_DIR=“/Users/christopher.holmes/.wasmer”
+  [ -s “$WASMER_DIR/wasmer.sh” ] && source “$WASMER_DIR/wasmer.sh”      
+fi
+
+alias bex='bundle exec'
