@@ -10,5 +10,4 @@ cp -r ~/dotfiles ~/.dotfiles
 echo "eval \$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" >>~/.profile
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-brew install tmux
-brew install nvim
+brew bundle
