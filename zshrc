@@ -21,7 +21,7 @@ export TERM=screen-256color
 
 alias ideas="vim ~/.ideas.md"
 
-export EDITOR=vim
+export EDITOR=nvim
 # bindkey -e
 
 alias gs='git status'
@@ -39,15 +39,14 @@ export DISPLAY=:0
 bindkey -v
 export KEYTIMEOUT=1
 
-if [[ “$OSTYPE” == “darwin”* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
   . /usr/local/opt/asdf/asdf.sh
   . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
-  export PATH=“/usr/local/sbin:$PATH”
+  export PATH="/usr/local/sbin:$PATH"
   export HOMEBREW_NO_AUTO_UPDATE=1
   export PROJECTS_HOME=${HOME}/projects
-  export PATH=“/usr/local/opt/coreutils/libexec/gnubin/:$PATH”
-  export PATH=“$(brew —prefix qt@5.5)/bin:$PATH”
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
   export PROJECTS_HOME=${HOME}/projects
 
   # Wasmer
