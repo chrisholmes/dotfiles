@@ -16,7 +16,7 @@ prompt grb
 alias ll="ls -lG"
 alias ls="ls -G"
 
-export HISTSIZE=2000
+export HISTSIZE=20000
 export TERM=screen-256color
 
 alias ideas="vim ~/.ideas.md"
@@ -39,19 +39,15 @@ export DISPLAY=:0
 bindkey -v
 export KEYTIMEOUT=1
 
+alias bex='bundle exec'
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  . /usr/local/opt/asdf/asdf.sh
-  . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+  . "${brew --prefix}/opt/asdf/libexec/asdf.sh"
+  . "${brew --prefix}/share/zsh/site-functions"
 
   export PATH="/usr/local/sbin:$PATH"
   export HOMEBREW_NO_AUTO_UPDATE=1
-  export PROJECTS_HOME=${HOME}/projects
-  export PATH="/usr/local/opt/coreutils/libexec/gnubin/:$PATH"
-  export PROJECTS_HOME=${HOME}/projects
-
-  # Wasmer
-  export WASMER_DIR=“/Users/christopher.holmes/.wasmer”
-  [ -s “$WASMER_DIR/wasmer.sh” ] && source “$WASMER_DIR/wasmer.sh”      
+  export PATH="${brew --prefix}/opt/coreutils/libexec/gnubin/:$PATH"
+  source ${HOME}/.docker/init-zsh.sh || true # Added by Docker Desktop
+  export PATH="${brew --prefix sqlite}/bin:$PATH"
 fi
-
-alias bex='bundle exec'
