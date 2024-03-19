@@ -45,3 +45,21 @@
 	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
 	allowed = AKIAIOSFODNN7EXAMPLE
 	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+[init]
+	defaultBranch = main
+[diff "bnwsec"]
+	textconv = bnw_secrets get --detect-profile
+[merge "bnwsec"]
+	name = A custom merge driver used to resolve conflicts in bnwsec files
+	driver = bnw_secrets merge %O %A %B %P
+	recursive = binary
+[merge]
+	conflictstyle = zdiff3
+[commit]
+	verbose = true
+[rerere]
+	enabled = true
+[diff]
+	algorithm = histogram
+[branch]
+	sort = -committerdate
