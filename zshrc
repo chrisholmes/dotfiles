@@ -42,12 +42,12 @@ export KEYTIMEOUT=1
 alias bex='bundle exec'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  . "${brew --prefix}/opt/asdf/libexec/asdf.sh"
-  . "${brew --prefix}/share/zsh/site-functions"
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
+  . "$(brew --prefix)/share/zsh/site-functions"
 
   export PATH="/usr/local/sbin:$PATH"
   export HOMEBREW_NO_AUTO_UPDATE=1
-  export PATH="${brew --prefix}/opt/coreutils/libexec/gnubin/:$PATH"
-  source ${HOME}/.docker/init-zsh.sh || true # Added by Docker Desktop
-  export PATH="${brew --prefix sqlite}/bin:$PATH"
+  export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin/:$PATH"
+  source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop
+  export PATH="$(brew --prefix sqlite)/bin:$PATH"
 fi
