@@ -1,0 +1,21 @@
+# Worktree cleanup function
+local branch_name="${1:?Usage: worktree_cleanup <branch-name>}"
+local worktree_path="worktrees/$branch_name"
+
+if [[ ! -d "$worktree_path" ]]; then
+  echo "Error: Worktree $worktree_path does not exist"
+  return 1
+fi
+
+echo "Cleaning up worktree: $worktree_path"
+
+# Stop common development servers
+if [[ -f "$worktree_path/tmp/pids/server.pid" ]]; then
+  echo "Stopping Rails server..."
+  kill "$(cat "$worktree_path/tmp/pids/server.pid")" 2>/dev/null || true
+fi
+
+# Remove worktree
+git worktree remove "$worktree_path" --force
+
+echo "✅ Worktree removed successfully"

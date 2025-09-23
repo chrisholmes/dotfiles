@@ -1,0 +1,22 @@
+# List worktrees with status
+echo "Git Worktrees:"
+git worktree list
+
+if [[ -d "worktrees" ]]; then
+  echo ""
+  echo "Worktree Status:"
+  
+  for worktree in worktrees/*/; do
+    if [[ -d "$worktree" ]]; then
+      local branch=$(basename "$worktree")
+      
+      # Check if Rails server is running
+      local status="⚫ Stopped"
+      if [[ -f "$worktree/tmp/pids/server.pid" ]] && kill -0 "$(cat "$worktree/tmp/pids/server.pid")" 2>/dev/null; then
+        status="🟢 Rails Server Running"
+      fi
+      
+      echo "  $branch: $status"
+    fi
+  done
+fi

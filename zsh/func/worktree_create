@@ -1,0 +1,81 @@
+# Generic git worktree creation function
+local branch_name="${1:?Usage: worktree_create <branch-name> [base-branch]}"
+local base_branch="${2:-$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@' 2>/dev/null || echo 'main')}"
+local worktree_path="worktrees/$branch_name"
+
+# Check if we're in a git repository
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  echo "Error: Not in a git repository"
+  return 1
+fi
+
+# Check if worktree already exists
+if [[ -d "$worktree_path" ]]; then
+  echo "Error: Worktree $worktree_path already exists"
+  return 1
+fi
+
+echo "Creating worktree for branch: $branch_name (from $base_branch)"
+
+# Create the worktree
+if git show-ref --verify --quiet "refs/heads/$branch_name"; then
+  git worktree add "$worktree_path" "$branch_name"
+else
+  git worktree add "$worktree_path" -b "$branch_name" "$base_branch"
+fi
+
+cd "$worktree_path"
+echo "Setting up worktree environment..."
+
+# Auto-detect project type and run appropriate setup
+local setup_ran=false
+
+# Rails project detection
+if [[ -f "Gemfile" ]]; then
+  echo "📦 Detected Ruby/Rails project"
+  
+  # Build .env if script exists
+  if [[ -x "bin/build_dot_env" ]]; then
+    echo "Building .env..."
+    ./bin/build_dot_env
+  fi
+  
+  echo "Installing Ruby dependencies..."
+  bundle install --quiet --jobs=$(nproc) 2>/dev/null || bundle install --quiet
+  setup_ran=true
+fi
+
+# Rust project detection
+if [[ -f "Cargo.toml" ]]; then
+  echo "📦 Detected Rust project"
+  echo "Building dependencies..."
+  cargo check 2>/dev/null || echo "Note: cargo check failed"
+  setup_ran=true
+fi
+
+# Always run yarn install if package.json exists
+if [[ -f "package.json" ]]; then
+  echo "📦 Installing JavaScript dependencies..."
+  yarn install --silent 2>/dev/null || yarn install
+  setup_ran=true
+fi
+
+if [[ "$setup_ran" == "false" ]]; then
+  echo "📁 Generic project - no automatic setup performed"
+fi
+
+echo ""
+echo "✅ Worktree ready!"
+echo "📁 Location: $(pwd)"
+echo ""
+echo "Next steps:"
+echo "  cd $worktree_path"
+
+# Suggest project-specific commands
+if [[ -f "bin/serve" ]]; then
+  echo "  ./bin/serve"
+elif [[ -f "bin/rails" ]]; then
+  echo "  bundle exec rails server"
+elif [[ -f "Cargo.toml" ]]; then
+  echo "  cargo run"
+fi

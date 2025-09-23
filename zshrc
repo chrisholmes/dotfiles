@@ -51,3 +51,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop
   export PATH="$(brew --prefix sqlite)/bin:$PATH"
 fi
+
+# Worktree functions
+fpath=(~/.zsh/func $fpath)
+autoload -Uz worktree_create worktree_cleanup worktree_list
+
+# Worktree aliases
+alias wt='worktree_create'
+alias wtc='worktree_cleanup'
+alias wtl='worktree_list'
