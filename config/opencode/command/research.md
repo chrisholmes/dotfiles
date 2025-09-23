@@ -1,6 +1,7 @@
 ---
 description: Research a topic thoroughly and present findings in a structured format.
 agent: researcher
+subtask: true
 ---
 
 Perform comprehensive research on:
