@@ -17,7 +17,6 @@ alias ll="ls -lG"
 alias ls="ls -G"
 
 export HISTSIZE=20000
-export TERM=screen-256color
 
 alias ideas="vim ~/.ideas.md"
 
@@ -42,15 +41,27 @@ export KEYTIMEOUT=1
 alias bex='bundle exec'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  . "$(brew --prefix asdf)/libexec/asdf.sh"
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+  # # append completions to fpath
+  fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+  # initialise completions with ZSH's compinit
+  autoload -Uz compinit && compinit
+
   . "$(brew --prefix)/share/zsh/site-functions"
 
   export PATH="/usr/local/sbin:$PATH"
   export HOMEBREW_NO_AUTO_UPDATE=1
   export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin/:$PATH"
-  source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop
+  # source $HOME/.docker/init-zsh.sh || true # Added by Docker Desktop
   export PATH="$(brew --prefix sqlite)/bin:$PATH"
 fi
+
+. ~/.asdf/plugins/java/set-java-home.zsh
+
+
+
+# Created by `pipx` on 2025-06-03 08:23:01
+export PATH="$PATH:$HOME/.local/bin"
 
 # Worktree functions
 fpath=(~/.zsh/func $fpath)
