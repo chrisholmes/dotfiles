@@ -30,7 +30,7 @@
     "serena": {
       "type": "local",
       "command": ["uvx", "--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"],
-      "enabled": true
+      "enabled": false
     },
     "github": {
       "type": "remote",
@@ -55,7 +55,7 @@
     "researcher": {
       "description": "Researches topics and gathers information",
       "mode": "subagent",
-      "prompt": "You are an expert researcher. Use the existing codebase to research the provided topic. Do not describes, testing plans, migration plans, estimates. Focus only on the topic given. Be concise and to the point. If researching code changes then provide code snippets where relevant.",
+      "prompt": "You are an expert researcher. Use the existing codebase to research the provided topic. Do not describes, testing plans, migration plans, estimates. Focus only on the topic given. Be concise and to the point. If researching code changes then provide code snippets where relevant. Do not edit source or project files",
       "tools": {
         "write": false,
         "edit": false
@@ -98,5 +98,19 @@
       }
     }
   },
-  "$schema": "https://opencode.ai/config.json"
+  "$schema": "https://opencode.ai/config.json",
+  "mode": {
+    "plan": {
+      "prompt": "{file:./prompts/plan.md}"
+    },
+    "research": {
+      "prompt": "{file:./prompts/research.md}",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false,
+        "Serena_replace_symbol_body": false
+      }
+    }
+  }
 }
