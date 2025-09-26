@@ -6,8 +6,3 @@
 - to get Semaphore pipeline ID from GitHub PR check runs: `gh pr checks --json link | jq -r '.[] | select(.link | contains("semaphore")) | .link | split("=")[-1]`
 - to look up semaphore workflow run: `sem get pipeline pipeline $pipeline_id`
 - do not use `-v` with `rspec` as it prints the version number; it is not verbose mode
-- use serena during development and research
-- write out all plans into markdown files in the plans/ directory. Be thorough and comprehensive. Do not include risks or estimates in the plans. They are intended as a prompt for an AI Agent to execute against.
-- write out all research into markdown files in the research/ directory. Be thorough and comprehensive.
-- when writing out plans, don't provide estimates in weeks. You can give a view of complexity if you want, but it's not necessary
-- Don't provide performance improvements estimates either as you're unlikely to be accurate

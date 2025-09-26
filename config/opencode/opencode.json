@@ -55,10 +55,11 @@
     "researcher": {
       "description": "Researches topics and gathers information",
       "mode": "subagent",
-      "prompt": "You are an expert researcher. Use the existing codebase to research the provided topic. Do not describes, testing plans, migration plans, estimates. Focus only on the topic given. Be concise and to the point. If researching code changes then provide code snippets where relevant. Do not edit source or project files",
+      "prompt": "You are an expert researcher. Use the existing codebase to research the provided topic. Do not describes, testing plans, migration plans, estimates. Focus only on the topic given. Be concise and to the point. If researching code changes then provide code snippets where relevant. Do not edit source or project files. Do not move or delete files.",
       "tools": {
         "write": false,
-        "edit": false
+        "edit": false,
+        "bash": false
       }
     },
     "code-reviewer": {
@@ -101,15 +102,30 @@
   "$schema": "https://opencode.ai/config.json",
   "mode": {
     "plan": {
-      "prompt": "{file:./prompts/plan.md}"
+      "prompt": "{file:./prompts/plan.md}",
+      "permissions": {
+        "edit": "ask",
+        "write": "ask",
+        "bash": {
+          "*": "ask",
+          "rm": "deny",
+          "grep": "allow",
+          "find": "allow"
+        }
+      }
     },
     "research": {
       "prompt": "{file:./prompts/research.md}",
-      "tools": {
-        "write": false,
-        "edit": false,
-        "bash": false,
-        "Serena_replace_symbol_body": false
+      "permissions": {
+        "edit": "ask",
+        "write": "ask",
+        "bash": {
+          "*": "ask",
+          "rm": "deny",
+          "grep": "allow",
+          "find": "allow",
+          "ls": "allow"
+        }
       }
     }
   }
